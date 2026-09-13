@@ -1,0 +1,367 @@
+:root {
+  --bg: #ffffff;
+  --bg-sidebar: #f6f8fa;
+  --fg: #1f2328;
+  --fg-muted: #59636e;
+  --border: #d1d9e0;
+  --link: #0969da;
+  --code-bg: #f6f8fa;
+  --current-bg: #ddf4ff;
+  --sidebar-width: 17rem;
+  --toc-width: 14rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1117;
+    --bg-sidebar: #010409;
+    --fg: #e6edf3;
+    --fg-muted: #9198a1;
+    --border: #3d444d;
+    --link: #4493f8;
+    --code-bg: #151b23;
+    --current-bg: #1f3d63;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans',
+    'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Layout */
+
+.app {
+  display: flex;
+  align-items: flex-start;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  flex: 0 0 var(--sidebar-width);
+  width: var(--sidebar-width);
+  height: 100vh;
+  overflow-y: auto;
+  padding: 1rem 0.75rem 2rem;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  font-size: 0.875rem;
+}
+
+.sidebar-title {
+  padding: 0 0.25rem 0.75rem;
+  color: var(--fg-muted);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.sidebar-empty {
+  padding: 0 0.25rem;
+  color: var(--fg-muted);
+}
+
+.content {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 2rem 3rem 6rem;
+}
+
+@media (max-width: 700px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: static;
+    flex-basis: auto;
+    width: 100%;
+    height: auto;
+    max-height: 40vh;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .content {
+    padding: 1.5rem 1rem 4rem;
+  }
+}
+
+/* Document and its table of contents */
+
+.doc {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5rem;
+}
+
+/* Keep wide content (tables, code blocks) from pushing the table of contents. */
+.doc .markdown-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.toc {
+  position: sticky;
+  top: 2rem;
+  flex: 0 0 var(--toc-width);
+  width: var(--toc-width);
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  padding-left: 1rem;
+  border-left: 1px solid var(--border);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.toc-title {
+  margin-bottom: 0.5rem;
+  color: var(--fg-muted);
+  font-weight: 600;
+}
+
+.toc ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.toc a {
+  display: block;
+  padding: 0.2rem 0;
+  color: var(--fg-muted);
+  overflow-wrap: anywhere;
+}
+
+.toc a:hover {
+  color: var(--link);
+}
+
+/* Too narrow to hold the document and the table of contents side by side. */
+@media (max-width: 1150px) {
+  .toc {
+    display: none;
+  }
+}
+
+/* File tree */
+
+.tree {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tree .tree {
+  padding-left: 0.85rem;
+  border-left: 1px solid var(--border);
+  margin-left: 0.35rem;
+}
+
+.tree summary {
+  padding: 0.15rem 0.25rem;
+  color: var(--fg-muted);
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0.375rem;
+}
+
+.tree summary:hover {
+  background: color-mix(in srgb, var(--fg) 6%, transparent);
+}
+
+.tree .file {
+  display: block;
+  padding: 0.15rem 0.4rem;
+  color: var(--fg);
+  border-radius: 0.375rem;
+  overflow-wrap: anywhere;
+}
+
+.tree .file-name,
+.tree .file-title {
+  display: block;
+}
+
+.tree .file-title {
+  color: var(--fg-muted);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+
+/* The highlight already carries the current item; keep its two lines together. */
+.tree .file.current .file-title {
+  color: inherit;
+}
+
+.tree .file:hover {
+  background: color-mix(in srgb, var(--fg) 6%, transparent);
+  text-decoration: none;
+}
+
+.tree .file.current {
+  background: var(--current-bg);
+  font-weight: 600;
+}
+
+/* Rendered markdown */
+
+.markdown-body {
+  max-width: 48rem;
+}
+
+.markdown-body > *:first-child {
+  margin-top: 0;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin: 1.75rem 0 1rem;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+.markdown-body h1 {
+  font-size: 2rem;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--border);
+}
+
+.markdown-body h2 {
+  font-size: 1.5rem;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--border);
+}
+
+.markdown-body h3 {
+  font-size: 1.25rem;
+}
+
+.markdown-body p,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body blockquote,
+.markdown-body table,
+.markdown-body pre {
+  margin: 0 0 1rem;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body li + li {
+  margin-top: 0.25em;
+}
+
+.markdown-body blockquote {
+  padding: 0 1em;
+  color: var(--fg-muted);
+  border-left: 0.25em solid var(--border);
+}
+
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+}
+
+.markdown-body hr {
+  height: 1px;
+  margin: 1.5rem 0;
+  background: var(--border);
+  border: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow: auto;
+  border-collapse: collapse;
+}
+
+.markdown-body th,
+.markdown-body td {
+  padding: 0.375rem 0.85rem;
+  border: 1px solid var(--border);
+}
+
+.markdown-body tr:nth-child(2n) {
+  background: var(--code-bg);
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body samp {
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
+  font-size: 0.875em;
+}
+
+.markdown-body :not(pre) > code {
+  padding: 0.2em 0.4em;
+  background: var(--code-bg);
+  border-radius: 0.375rem;
+}
+
+.markdown-body pre {
+  padding: 1rem;
+  overflow: auto;
+  background: var(--code-bg);
+  border-radius: 0.375rem;
+}
+
+/* chroma sets its own colors; keep its background out of the way. */
+.markdown-body pre.chroma,
+.markdown-body .chroma {
+  background: var(--code-bg);
+}
+
+/* Task list items are plain <li>s holding a checkbox; drop their bullet. */
+.markdown-body li:has(> input[type='checkbox']) {
+  list-style: none;
+  margin-left: -1.4em;
+}
+
+.markdown-body input[type='checkbox'] {
+  margin-right: 0.4em;
+  vertical-align: middle;
+}
+
+/* Errors */
+
+.error h1 {
+  margin: 0 0 0.5rem;
+  font-size: 3rem;
+}
+
+.error p {
+  color: var(--fg-muted);
+}
