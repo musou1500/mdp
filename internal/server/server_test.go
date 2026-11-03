@@ -14,8 +14,8 @@ import (
 	"testing"
 	"time"
 
-	"mdp/internal/render"
-	"mdp/internal/tree"
+	"github.com/musou1500/mdp/internal/render"
+	"github.com/musou1500/mdp/internal/tree"
 )
 
 // newTestServer serves a document root holding the given files, as

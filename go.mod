@@ -1,4 +1,4 @@
-module mdp
+module github.com/musou1500/mdp
 
 go 1.26.1
 

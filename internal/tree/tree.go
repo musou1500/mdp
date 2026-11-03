@@ -6,7 +6,7 @@ import (
 	"path"
 	"strings"
 
-	"mdp/internal/render"
+	"github.com/musou1500/mdp/internal/render"
 )
 
 // Node is one entry of the sidebar tree. Path is the URL path of the entry,

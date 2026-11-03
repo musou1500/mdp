@@ -14,9 +14,9 @@ import (
 	"strings"
 	"time"
 
-	"mdp/internal/render"
-	"mdp/internal/tree"
-	"mdp/internal/watch"
+	"github.com/musou1500/mdp/internal/render"
+	"github.com/musou1500/mdp/internal/tree"
+	"github.com/musou1500/mdp/internal/watch"
 
 	"os"
 )

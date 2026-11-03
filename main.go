@@ -14,7 +14,7 @@ import (
 	"os/signal"
 	"path/filepath"
 
-	"mdp/internal/server"
+	"github.com/musou1500/mdp/internal/server"
 )
 
 func main() {
