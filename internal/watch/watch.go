@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/fsnotify/fsnotify"
-	"mdpreview/internal/tree"
+	"mdp/internal/tree"
 )
 
 // quiet is how long changes are waited out before signalling. Editors emit

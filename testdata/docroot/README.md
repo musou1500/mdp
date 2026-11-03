@@ -1,4 +1,4 @@
-# mdpreview sample
+# mdp sample
 
 This directory exists to exercise the viewer by hand. It is served as the
 document root by `make dev`.

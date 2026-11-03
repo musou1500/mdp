@@ -6,7 +6,7 @@ export function Sidebar({ nodes }: { nodes: TreeNode[] }) {
   const current = useCurrentPath()
   return (
     <nav className="sidebar">
-      <div className="sidebar-title">mdpreview</div>
+      <div className="sidebar-title">mdp</div>
       {nodes.length === 0 ? (
         <p className="sidebar-empty">No markdown files.</p>
       ) : (

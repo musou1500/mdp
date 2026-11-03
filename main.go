@@ -14,7 +14,7 @@ import (
 	"os/signal"
 	"path/filepath"
 
-	"mdpreview/internal/server"
+	"mdp/internal/server"
 )
 
 func main() {

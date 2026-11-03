@@ -14,9 +14,9 @@ import (
 	"strings"
 	"time"
 
-	"mdpreview/internal/render"
-	"mdpreview/internal/tree"
-	"mdpreview/internal/watch"
+	"mdp/internal/render"
+	"mdp/internal/tree"
+	"mdp/internal/watch"
 
 	"os"
 )

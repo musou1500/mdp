@@ -1,4 +1,4 @@
-# mdpreview
+# mdp
 
 A markdown preview server for a whole directory.
 

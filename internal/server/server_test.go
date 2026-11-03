@@ -14,8 +14,8 @@ import (
 	"testing"
 	"time"
 
-	"mdpreview/internal/render"
-	"mdpreview/internal/tree"
+	"mdp/internal/render"
+	"mdp/internal/tree"
 )
 
 // newTestServer serves a document root holding the given files, as

@@ -1,5 +1,5 @@
 {
-  "name": "mdpreview-web",
+  "name": "mdp-web",
   "private": true,
   "type": "module",
   "scripts": {
